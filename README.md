@@ -25,4 +25,3 @@
 
 # Screenshots
 ![Preview](./screeshots/preview.png)
-![Preview](https://github.com/ke260g/shared-rich-text-editor/blob/master/screenshots/preview.png)
