@@ -1,0 +1,25 @@
+{
+  "name": "shared-rich-text-editor",
+  "version": "1.0.0",
+  "description": "[TOC]",
+  "main": "trig.js",
+  "dependencies": {
+    "ckeditor4": "^4.16.2",
+    "jquery": "^3.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ke260g/shared-rich-text-editor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ke260g/shared-rich-text-editor/issues"
+  },
+  "homepage": "https://github.com/ke260g/shared-rich-text-editor#readme"
+}

@@ -10,7 +10,7 @@
 
 # Next Plan
 
-1. Support on editable username and password
+1. Support on editable uuid
 2. Support multi-point login, register and publish
 3. Adapt for small phone
 

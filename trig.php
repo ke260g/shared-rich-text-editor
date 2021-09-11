@@ -1,12 +1,12 @@
 <?php
-require 'func.php';
-$config = require 'config.php';
+require './submodules/online-clipboard/func.php';
+$config = require './submodules/online-clipboard/config.php';
 parse_str($_SERVER["QUERY_STRING"], $QUERY_TABLE);
 $REQUEST_METHOD = $_SERVER['REQUEST_METHOD'];
 
 $SAVE_EXPIRE = 24*3600;
 
-function ConnectRedis($hash) {
+function ConnectRedis() {
     global $config;
     $redis  = new Redis();
     $redis->pconnect($config['redis']['host'], $config['redis']['port']);
@@ -25,7 +25,6 @@ function ConnectRedis($hash) {
 function OnGet($redis, $hash) {
     global $SAVE_EXPIRE;
     $str  = '';
-    header('Content-Type', 'text/plain; charset=utf-8');
     $messages = $redis->lRange($hash, 0, 0);
     foreach($messages as $k => $m) {
         $m = htmlspecialchars_decode($m);
@@ -48,20 +47,25 @@ function OnPost($redis, $hash) {
     $redis->setTimeout($hash, $SAVE_EXPIRE);
 }
 
-# 提取参数
-$username = $QUERY_TABLE['username'];
-$password = $QUERY_TABLE['password'];
+function DoParseParam() {
+    global $QUERY_TABLE;
+    $uuid = $QUERY_TABLE['uuid'];
 
-# 检查参数
-if (empty($username) or !isset($username) or
-    empty($password) or !isset($password)) {
-    echo '';
-    return;
+    if (empty($uuid) or !isset($uuid)) {
+        // TODO: 返回错误原因
+        exit();
+    } else if (!ctype_alnum($uuid)) {
+        // TODO: 返回错误原因
+        exit();
+    }
+    return $uuid;
 }
 
+# 提取参数
+$uuid = DoParseParam();
 # 初始化
-$hash  = md5($password . $username);
-$redis = ConnectRedis($hash);
+$hash  = md5($uuid);
+$redis = ConnectRedis();
 
 # 路由
 switch ($REQUEST_METHOD) {
