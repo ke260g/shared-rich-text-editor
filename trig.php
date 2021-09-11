@@ -11,7 +11,7 @@ function ConnectRedis($hash) {
     $redis  = new Redis();
     $redis->pconnect($config['redis']['host'], $config['redis']['port']);
 
-    # 调试信息
+    # debug information
     # print "Server is running: " . $redis->ping()."\n";
     # var_dump($config['redis']);
 
@@ -32,17 +32,19 @@ function OnGet($redis, $hash) {
         $str .= "{$m}\n\n";
     }
     echo $str;
-    # 设置数据超时
+
+    # refresh timeout
     $redis->setTimeout($hash, $SAVE_EXPIRE);
 }
 
 function OnPost($redis, $hash) {
     global $SAVE_EXPIRE;
-    # save_cb 内部接口已经限制空间
+
+    # save_cb will retrict redis space usage
+    # save_cb will echo data on success
     save_cb($redis, $hash, $_POST['data']);
-    # 回显数据
-    echo $_POST['data'];
-    # 设置数据超时
+
+    # refresh timeout
     $redis->setTimeout($hash, $SAVE_EXPIRE);
 }
 

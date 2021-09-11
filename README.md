@@ -2,7 +2,7 @@
 
 # Introduction
 
-1. A shared rich text clipboard based on web.
+1. A shared rich text editor based on web.
 2. Dependences
    1. [online-clipboard](https://github.com/ety001/online-clipboard) 
    2. [ckeditor4](https://ckeditor.com/ckeditor-4/)
