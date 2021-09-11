@@ -22,3 +22,6 @@
 4. nodejs
 5. npm
 6. http server
+
+# Screenshots
+![Preview](./screenshots/preview.png)
